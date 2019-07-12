@@ -21,7 +21,7 @@ RUN apt-get update \
 COPY docker-entrypoint.sh /src
 
 # Copy in Gemfile
-COPY Gemfile Gemfile.lock /src/
+COPY Gemfile /src/
 
 # Install Gems
 RUN bundle install --deployment --without development test --binstubs --jobs=2 --retry=4
