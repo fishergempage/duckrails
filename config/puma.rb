@@ -1,5 +1,5 @@
-workers ENV.fetch("PUMA_WORKERS") { 3 }
-port ENV.fetch("PUMA_LISTEN_PORT") { 80 }
+workers Integer(ENV.fetch("PUMA_WORKERS") { 3 })
+port Integer(ENV.fetch("PUMA_LISTEN_PORT") { 80 })
 
 preload_app!
 
