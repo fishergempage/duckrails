@@ -24,7 +24,7 @@ COPY docker-entrypoint.sh /src
 COPY Gemfile /src/
 
 # Install Gems
-RUN bundle install --without development
+RUN bundle install --deployment --without development test --binstubs --jobs=2 --retry=4
 
 # Copy in the rest of the app
 COPY . .
