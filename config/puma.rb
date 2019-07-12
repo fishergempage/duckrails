@@ -1,5 +1,5 @@
-workers Integer(ENV["PUMA_WORKERS"] || 2)
-threads_count = Integer(ENV["RAILS_MAX_THREADS"] || 5)
+workers ENV.fetch("PUMA_WORKERS") { 2 }.to_i
+threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i
 threads threads_count, threads_count
 
 preload_app!
