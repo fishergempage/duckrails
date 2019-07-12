@@ -2,7 +2,8 @@ FROM ruby:2.4-stretch
 LABEL maintainer="Lazarus Lazaridis http://iridakos.com"
 
 # Change to repo directory
-WORKDIR /opt/duckrails
+RUN mkdir /src
+WORKDIR ./src
 
 # From now on execute rails stuff in production mode
 ENV RAILS_ENV production
@@ -17,10 +18,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Add docker entrypoint.sh
-COPY docker-entrypoint.sh /
+COPY docker-entrypoint.sh /src
 
 # Copy in Gemfile
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock /src/
 
 # Install Gems
 RUN bundle install --deployment --without development test --binstubs --jobs=2 --retry=4
@@ -36,7 +37,7 @@ RUN bundle exec rake assets:precompile
 
 # Add entrypoint for running db:migrations on upgrades
 # and setting a unique SECRET_KEY_BASE value if not already set
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/src/docker-entrypoint.sh"]
 
 # Start the server
 CMD ["puma"]
