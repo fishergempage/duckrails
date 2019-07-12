@@ -1,5 +1,6 @@
 workers Integer(ENV["PUMA_WORKERS"] || 2)
 threads_count = Integer(ENV["PUMA_LISTEN_PORT"] || 80)
+threads threads_count, threads_count
 
 preload_app!
 
