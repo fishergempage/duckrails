@@ -15,7 +15,7 @@ gem 'libxml-ruby'
 gem 'sqlite3'
 gem 'pg', '~> 0.15'
 gem 'mysql2'
-gem 'puma'
+gem 'puma', '3.10.0'
 
 group :development, :test do
   gem 'byebug'
