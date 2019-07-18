@@ -10,7 +10,7 @@ ENV RAILS_ENV production
 ENV RACK_ENV production
 
 # Expose container port 80
-EXPOSE 80
+EXPOSE $PORT
 
 # Add Required Packages
 RUN apt-get update \
@@ -40,4 +40,4 @@ RUN bundle exec rake assets:precompile
 ENTRYPOINT ["/src/docker-entrypoint.sh"]
 
 # Start the server
-CMD ["puma"]
+CMD ["bundle exec puma -C config/puma.rb"]
