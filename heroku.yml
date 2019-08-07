@@ -1,5 +1,5 @@
 build:
   docker:
-    gempages-api-faker: Dockerfile
+    web: Dockerfile
 run:
-  gempages-api-faker: bundle exec puma -C config/puma.rb
+  web: bundle exec puma -C config/puma.rb
