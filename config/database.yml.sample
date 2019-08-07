@@ -21,4 +21,5 @@ development:
 
 production:
   <<: *default
+  adapter: ENV.fetch("DATABASE_ADAPTER")
   url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
