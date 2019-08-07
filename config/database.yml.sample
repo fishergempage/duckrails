@@ -21,9 +21,4 @@ development:
 
 production:
   <<: *default
-  adapter:  <%= ENV['DATABASE_ADAPTER'] || "sqlite3" %>
-  database: <%= ENV['DATABASE_NAME'] || "db/sqlite/production.sqlite3" %>
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  host: <%= ENV['DATABASE_HOSTNAME'] %>
-  port: <%= ENV['DATABASE_PORT']  %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
